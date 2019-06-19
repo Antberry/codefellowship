@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class AppUserController {
     @Autowired
     PasswordEncoder bCryptPasswordEncoder;
 
-    @PostMapping("/users")
+    @PostMapping("/signup")
     public RedirectView createUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio){
         AppUser newUser = new AppUser(username, bCryptPasswordEncoder.encode(password),firstName,lastName,dateOfBirth,bio);
         appUserRepository.save(newUser);
@@ -31,6 +32,7 @@ public class AppUserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new RedirectView("/");
     }
+
 
     @GetMapping("/login")
     public String goToLogin(){
