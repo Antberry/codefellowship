@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+</head>
+<body>
+    <h1 th:text = "${user.username}">Greetings, </h1>
+
+    <div>
+        <span th:text = "${user.firstName}"></span>
+        <span th:text = "${user.lastName}"></span>
+        <span th:text = "${user.dateOfBirth}"></span>
+        <span th:text = "${user.bio}"></span>
+    </div>
+</body>
+</html>

@@ -27,15 +27,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+    @Override
     protected void configure(final HttpSecurity http) throws Exception{
         http
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests().antMatchers("/","/users","/signup","/login")
-                .permitAll().anyRequest().authenticated()
+                .permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").and().logout();
+                .loginPage("/login")
+                .and().logout();
     }
 
     @Override
