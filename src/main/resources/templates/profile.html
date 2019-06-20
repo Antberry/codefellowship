@@ -6,12 +6,25 @@
 </head>
 <body>
     <h1 th:text = "${user.username}">Greetings, </h1>
+    <br>
 
     <div>
-        <span th:text = "${user.firstName}"></span>
-        <span th:text = "${user.lastName}"></span>
-        <span th:text = "${user.dateOfBirth}"></span>
-        <span th:text = "${user.bio}"></span>
+        <p><span th:text = "${user.firstName}"></span>
+        <span th:text = "${user.lastName}"></span></p>
+        <p><span th:text = "${user.dateOfBirth}"></span></p>
+        <p><span th:text = "${user.bio}"></span></p>
+    </div>
+
+    <div>
+        <h3>My Post</h3>
+        <br>
+
+        <ul>
+            <li th:each="post : ${posts}"
+                th:text="${post.body}">
+
+            </li>
+        </ul>
     </div>
 </body>
 </html>

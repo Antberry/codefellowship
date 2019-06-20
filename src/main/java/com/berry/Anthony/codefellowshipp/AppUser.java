@@ -5,11 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class AppUser implements UserDetails{
@@ -26,6 +24,8 @@ public class AppUser implements UserDetails{
 
     public AppUser(){}
 
+    @OneToMany
+    List<UserPost> posts;
 
     public AppUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio){
         this.username = username;
