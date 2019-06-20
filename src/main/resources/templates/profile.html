@@ -18,8 +18,12 @@
     <div>
         <h3>My Post</h3>
         <br>
+
         <ul>
-            <li></li>
+            <li th:each="post : ${posts}"
+                th:text="${post.body}">
+
+            </li>
         </ul>
     </div>
 </body>

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ServiceConfigurationError;
 
 @Controller
@@ -22,6 +23,9 @@ public class AppUserController {
 
     @Autowired
     AppUserRepository appUserRepository;
+
+    @Autowired
+    PostRepository postRepository;
 
     @Autowired
     PasswordEncoder bCryptPasswordEncoder;
@@ -38,7 +42,9 @@ public class AppUserController {
     @GetMapping("/myprofile")
     public String goToProfile(Principal p, Model model){
         AppUser user = appUserRepository.findByUsername(p.getName());
+//        List<UserPost> userPosts = postRepository.findByUsername(p.getName());
         model.addAttribute("user", user);
+//        model.addAttribute("posts", userPosts);
         return "profile";
     }
 

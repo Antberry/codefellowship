@@ -2,7 +2,9 @@ package com.berry.Anthony.codefellowshipp;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface PostRepository extends CrudRepository<UserPost, Long> {
+import java.util.List;
 
+public interface PostRepository extends CrudRepository<UserPost, Long> {
+//    List<UserPost> findByUsername(String username);
 
 }
