@@ -8,10 +8,12 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.ServiceConfigurationError;
 
@@ -32,7 +34,13 @@ public class AppUserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new RedirectView("/");
     }
-
+// profile page GetMapping for current login user
+    @GetMapping("/myprofile")
+    public String goToProfile(Principal p, Model model){
+        AppUser user = appUserRepository.findByUsername(p.getName());
+        model.addAttribute("user", user);
+        return "profile";
+    }
 
     @GetMapping("/login")
     public String goToLogin(){
